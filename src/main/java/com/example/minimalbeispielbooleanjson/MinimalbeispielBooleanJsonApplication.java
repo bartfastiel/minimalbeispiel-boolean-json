@@ -1,5 +1,9 @@
 package com.example.minimalbeispielbooleanjson;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,15 +19,18 @@ public class MinimalbeispielBooleanJsonApplication {
 
 }
 
-record Cat(
-        boolean alive
-) {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+class Cat {
+    private boolean alive;
 }
 
 @RestController
 class Controller {
     @PostMapping
     void post(@RequestBody Cat cat) {
-        System.out.println(cat.alive());
+        System.out.println(cat.isAlive());
     }
 }
